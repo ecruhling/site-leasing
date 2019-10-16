@@ -18,9 +18,9 @@
  * @since      1.0.0
  * @package    Site_Leasing
  * @subpackage Site_Leasing/includes
- * @author     Your Name <email@example.com>
+ * @author     Erik Ruhling <erik@resourceatlanta.com>
  */
-class Plugin_Name_Deactivator {
+class Site_Leasing_Deactivator {
 
 	/**
 	 * Short Description. (use period)

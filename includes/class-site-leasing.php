@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Site_Leasing
  * @subpackage Site_Leasing/includes
- * @author     Your Name <email@example.com>
+ * @author     Erik Ruhling <erik@resourceatlanta.com>
  */
 class Site_Leasing {
 
@@ -35,7 +35,7 @@ class Site_Leasing {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Plugin_Name_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Site_Leasing_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,9 +44,9 @@ class Site_Leasing {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string    $site_leasing    The string used to uniquely identify this plugin.
 	 */
-	protected $plugin_name;
+	protected $site_leasing;
 
 	/**
 	 * The current version of the plugin.
@@ -72,7 +72,7 @@ class Site_Leasing {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'site-leasing';
+		$this->site_leasing = 'site-leasing';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -86,10 +86,10 @@ class Site_Leasing {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Plugin_Name_Loader. Orchestrates the hooks of the plugin.
-	 * - Plugin_Name_i18n. Defines internationalization functionality.
-	 * - Plugin_Name_Admin. Defines all hooks for the admin area.
-	 * - Plugin_Name_Public. Defines all hooks for the public side of the site.
+	 * - Site_Leasing_Loader. Orchestrates the hooks of the plugin.
+	 * - Site_Leasing_i18n. Defines internationalization functionality.
+	 * - Site_Leasing_Admin. Defines all hooks for the admin area.
+	 * - Site_Leasing_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -122,14 +122,14 @@ class Site_Leasing {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-site-leasing-public.php';
 
-		$this->loader = new Plugin_Name_Loader();
+		$this->loader = new Site_Leasing_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Plugin_Name_i18n class in order to set the domain and to register the hook
+	 * Uses the Site_Leasing_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +137,7 @@ class Site_Leasing {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Plugin_Name_i18n();
+		$plugin_i18n = new Site_Leasing_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +152,7 @@ class Site_Leasing {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Plugin_Name_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Site_Leasing_Admin( $this->get_site_leasing(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,7 +168,7 @@ class Site_Leasing {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Plugin_Name_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Site_Leasing_Public( $this->get_site_leasing(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -191,15 +191,15 @@ class Site_Leasing {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_plugin_name() {
-		return $this->plugin_name;
+	public function get_site_leasing() {
+		return $this->site_leasing;
 	}
 
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Plugin_Name_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Site_Leasing_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
