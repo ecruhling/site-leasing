@@ -27,7 +27,7 @@ class Site_Leasing_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $site_leasing    The ID of this plugin.
+	 * @var      string $site_leasing The ID of this plugin.
 	 */
 	private $site_leasing;
 
@@ -36,21 +36,32 @@ class Site_Leasing_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
+	 * @param string $site_leasing The name of this plugin.
+	 * @param string $version The version of this plugin.
+	 *
 	 * @since    1.0.0
-	 * @param      string    $site_leasing       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $site_leasing, $version ) {
 
 		$this->site_leasing = $site_leasing;
-		$this->version = $version;
+		$this->version      = $version;
+
+		$this->wp_menu_args = (object) [
+			'parent_slug' => 'options-site-leasing.php',
+			'page_title'  => 'Site Leasing',
+			'menu_title'  => 'Site Leasing',
+			'capability'  => 'manage_options',
+			'menu_slug'   => 'site-leasing-settings',
+		];
+
+		add_action( 'admin_menu', [ $this, 'generate_main_options_page' ], 20 );
 
 	}
 
@@ -98,6 +109,48 @@ class Site_Leasing_Admin {
 
 		wp_enqueue_script( $this->site_leasing, plugin_dir_url( __FILE__ ) . 'js/site-leasing-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	/**
+	 * Create the main RentPress plugin options page to be visible in the WP admin menu
+	 * @return void
+	 */
+	public function generate_main_options_page() {
+		add_menu_page(
+			$this->wp_menu_args->page_title,
+			$this->wp_menu_args->menu_title,
+			$this->wp_menu_args->capability,
+			$this->wp_menu_args->menu_slug,
+			[ $this, 'render_settings_page' ],
+			'dashicons-admin-multisite',
+			5
+		);
+	}
+
+	/**
+	 * Render the settings page and fields for RentPress general settings
+	 * @return void
+	 */
+	public function render_settings_page() {
+//		$common_html=new rentPress_SettingsTabs_CommonHtml();
+//
+//		$common_html->openingOptionsWrapper();
+		?>
+        <!--		<h1>RentPress: General Settings</h1>-->
+        <!--		--><?php
+//		settings_errors();
+//		$common_html->displayOptionsTabs();
+		?>
+        <!---->
+        <!--		<form method="post" action="options.php" enctype="multipart/form-data">-->
+        <!--			--><?php
+//			settings_fields(self::$optionGroup);
+//			do_settings_sections($this->wp_menu_args->menu_slug);
+//			submit_button();
+		?>
+        <!--		</form>-->
+        <!--		--><?php
+//		$common_html->closingOptionsWrapper();
 	}
 
 }

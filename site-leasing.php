@@ -38,6 +38,11 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
 /**
+ * Plugin Assets
+ */
+define( 'SITELEASING_PLUGIN_ASSETS', plugin_dir_url( __FILE__ ) . '' );
+
+/**
  * Text Domain
  */
 define( 'SITELEASING_TEXT_DOMAIN', 'site-leasing' );
@@ -46,7 +51,6 @@ define( 'SITELEASING_TEXT_DOMAIN', 'site-leasing' );
  * Minimal PHP Version
  */
 define( 'SITELEASING_MINPHP_VERSION', '7.1' );
-//$siteLeasing_minimalRequiredPHPVersion = '7.1';
 
 /**
  * The code that runs during plugin activation.
