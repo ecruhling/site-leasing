@@ -20,7 +20,9 @@
  * @subpackage Site_Leasing/includes
  * @author     Erik Ruhling <erik@resourceatlanta.com>
  */
+
 class Site_Leasing_Activator {
+
 
 	/**
 	 * Short Description. (use period)
@@ -34,3 +36,7 @@ class Site_Leasing_Activator {
 	}
 
 }
+
+
+
+

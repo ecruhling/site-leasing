@@ -322,7 +322,7 @@ class Data_Retrieval {
 		// data for unit availabilities
 		foreach ( $availabilityArray as $unit ) :
 
-			$unit_types = \App\Controllers\TemplateFloorplans::floorplanTypes(); // create a unit_types array in order to get the extra data for the units (name, PDF, SVGs)
+			$unit_types = Data_Retrieval::floorplanTypes(); // create a unit_types array in order to get the extra data for the units (name, PDF, SVGs)
 			$key        = array_search( $unit->FloorplanName, array_column( $unit_types, 'FloorplanName' ) ); // search unit_types array for key containing the same FloorplanName
 			$unit->Name = $unit_types[ $key ]->Name; // add correct 'Name' to object
 			$baths      = substr( $unit->Baths, 0, - 1 ); // truncate last '0' from Baths

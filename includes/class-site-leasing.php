@@ -35,7 +35,7 @@ class Site_Leasing {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Site_Leasing_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Site_Leasing_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,7 +44,7 @@ class Site_Leasing {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $site_leasing    The string used to uniquely identify this plugin.
+	 * @var      string $site_leasing The string used to uniquely identify this plugin.
 	 */
 	protected $site_leasing;
 
@@ -53,7 +53,7 @@ class Site_Leasing {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -188,8 +188,8 @@ class Site_Leasing {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_site_leasing() {
 		return $this->site_leasing;
@@ -198,8 +198,8 @@ class Site_Leasing {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    Site_Leasing_Loader    Orchestrates the hooks of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -208,8 +208,8 @@ class Site_Leasing {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_version() {
 		return $this->version;

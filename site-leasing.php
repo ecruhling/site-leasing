@@ -48,33 +48,6 @@ define( 'SITELEASING_TEXT_DOMAIN', 'site-leasing' );
 $siteLeasing_minimalRequiredPHPVersion = '7.1';
 
 /**
- * Check the PHP version and give a useful error message if the user's version is less than the required version
- * @return boolean true if version check passed. If false, triggers an error which WP will handle, by displaying
- * an error message on the Admin page
- */
-function siteLeasing_noticePHPVersionWrong() {
-	global $siteLeasing_minimalRequiredPHPVersion;
-	echo '<div class="updated fade">' .
-	     __( 'Error: plugin "Resource Site Leasing" requires a newer version of PHP to be running.', SITELEASING_TEXT_DOMAIN ) .
-	     '<br/>' . __( 'Minimal version of PHP required: ', SITELEASING_TEXT_DOMAIN ) . '<strong>' . $siteLeasing_minimalRequiredPHPVersion . '</strong>' .
-	     '<br/>' . __( 'Your server\'s PHP version: ', SITELEASING_TEXT_DOMAIN ) . '<strong>' . phpversion() . '</strong>' .
-	     '</div>';
-
-	return false;
-}
-
-function siteLeasing_PHPVersionCheck() {
-	global $siteLeasing_minimalRequiredPHPVersion;
-	if ( version_compare( phpversion(), $siteLeasing_minimalRequiredPHPVersion ) < 0 ) {
-		add_action( 'admin_notices', 'siteLeasing_noticePHPVersionWrong' );
-
-		return false;
-	}
-
-	return true;
-}
-
-/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-site-leasing-activator.php
  */
@@ -112,12 +85,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-site-leasing.php';
  */
 function run_site_leasing() {
 
-	// Run the version check.
-	// If it is successful, continue with initialization for this plugin
-	if ( siteLeasing_PHPVersionCheck() ) {
-		$siteLeasingPlugin = new Site_Leasing();
-		$siteLeasingPlugin->run();
-	}
+	$siteLeasingPlugin = new Site_Leasing();
+	$siteLeasingPlugin->run();
 
 }
 
