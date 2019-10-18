@@ -45,7 +45,8 @@ define( 'SITELEASING_TEXT_DOMAIN', 'site-leasing' );
 /**
  * Minimal PHP Version
  */
-$siteLeasing_minimalRequiredPHPVersion = '7.1';
+define( 'SITELEASING_MINPHP_VERSION', '7.1' );
+//$siteLeasing_minimalRequiredPHPVersion = '7.1';
 
 /**
  * The code that runs during plugin activation.
