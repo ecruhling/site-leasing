@@ -75,8 +75,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-site-leasing.php';
  */
 function run_site_leasing() {
 
-	$plugin = new Site_Leasing();
-	$plugin->run();
+	$siteLeasingPlugin = new Site_Leasing();
+	$siteLeasingPlugin->run();
 
 }
 

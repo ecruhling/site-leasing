@@ -1,4 +1,4 @@
-=== Site Leasing ===
+=== Resource Site Leasing ===
 Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://resourceatlanta.com/
 Tags: rental, leasing, apartments

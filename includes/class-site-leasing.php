@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://example.com
+ * @link       https://resourceatlanta.com
  * @since      1.0.0
  *
  * @package    Site_Leasing
@@ -137,9 +137,9 @@ class Site_Leasing {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Site_Leasing_i18n();
+		$siteLeasingPlugin_i18n = new Site_Leasing_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action( 'plugins_loaded', $siteLeasingPlugin_i18n, 'load_plugin_textdomain' );
 
 	}
 
@@ -152,10 +152,10 @@ class Site_Leasing {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Site_Leasing_Admin( $this->get_site_leasing(), $this->get_version() );
+		$siteLeasingPlugin_admin = new Site_Leasing_Admin( $this->get_site_leasing(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $siteLeasingPlugin_admin, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $siteLeasingPlugin_admin, 'enqueue_scripts' );
 
 	}
 
@@ -168,10 +168,10 @@ class Site_Leasing {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Site_Leasing_Public( $this->get_site_leasing(), $this->get_version() );
+		$siteLeasingPlugin_public = new Site_Leasing_Public( $this->get_site_leasing(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $siteLeasingPlugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $siteLeasingPlugin_public, 'enqueue_scripts' );
 
 	}
 
