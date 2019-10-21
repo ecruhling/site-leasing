@@ -550,4 +550,303 @@ class Site_Leasing_Admin {
 
 	}
 
+	/** General settings field renderings */
+
+	/**
+	 * Settings Section: API Credentials
+	 * @return string [HTML of settings input]
+	 */
+	public function rentcafe_api_token() {
+		?>
+        <input type='text'
+               name='<?php echo $this->fields->api_token->name; ?>'
+               value='<?php echo $this->fields->api_token->value; ?>'
+               placeholder='API Token'>
+
+		<?php
+	}
+
+	public function rentcafe_api_username() {
+		?>
+        <input type='text'
+               name='<?php echo $this->fields->api_username->name; ?>'
+               value='<?php echo $this->fields->api_username->value; ?>'
+               placeholder='API Username'>
+		<?php
+	}
+
+	public function rentPress_site_is_about_single_property() {
+
+		$isChecked = checked( $this->fields->is_site_about_a_single_property->value, 'true', false );
+		?>
+        <label>
+
+            <input type='checkbox'
+                   name='<?php echo $this->fields->is_site_about_a_single_property->name; ?>'
+                   value='true'
+				<?php echo $isChecked; ?>>
+
+            This website is for a single property
+        </label>
+		<?php
+	}
+
+	public function rentPress_templates_accent_color() {
+
+		echo "<input type='color' name='{$this->fields->templates_accent_color->name}' value='{$this->fields->templates_accent_color->value}'>";
+
+	}
+
+	// public function rentPress_override_single_property_file()
+	// {
+	// 	$options=[
+	// 		"Use Custom Theme" => 'current-theme',
+	// 		'Single Property Template' => RENTPRESS_PLUGIN_DIR . 'templates/Properties/single-property-basic.php',
+	// 	];
+	//
+	// 	echo '<select name="'. $this->fields->override_single_property_template_file->name .'">';
+	//
+	// 		foreach ($options as $text => $optValue) {
+	//
+	// 			$isSelected=selected($this->fields->override_single_property_template_file->value, $optValue, false);
+	//
+	// 			echo '<option value="'. esc_attr($optValue) .'" '. $isSelected .'>'. $text .'</option>';
+	//
+	// 		}
+	//
+	// 	echo '</select>';
+	// }
+
+	public function rentPress_override_single_floorplan_file() {
+		$isChecked = checked( $this->fields->override_single_floorplan_template_file->value, SITELEASING_PLUGIN_DIR . 'templates/FloorPlans/single-floorplan-basic.php', false );
+		echo "<input id='rentpress_single_floorplan_setting' type='checkbox' name='" . $this->fields->override_single_floorplan_template_file->name . "' value='" . SITELEASING_PLUGIN_DIR . "templates/FloorPlans/single-floorplan-basic.php' {$isChecked}>";
+	}
+
+	public function rentPress_override_how_floorplan_pricing_is_display_field() {
+		$options = [
+			"Starting At" => 'starting-at',
+			'Range'       => 'range',
+		];
+
+		echo '<select name="' . $this->fields->override_how_floorplan_pricing_is_display->name . '">';
+
+		foreach ( $options as $text => $optValue ) {
+
+			$isSelected = selected( $this->fields->override_how_floorplan_pricing_is_display->value, $optValue, false );
+
+			echo '<option value="' . esc_attr( $optValue ) . '" ' . $isSelected . '>' . $text . '</option>';
+
+		}
+
+		echo '</select>';
+
+
+	}
+
+	public function rentPress_override_apply_links_targets_field() {
+		$options = [
+			"Same Window" => '_self',
+			'New Window'  => '_blank',
+		];
+
+		echo '<select name="' . $this->fields->override_apply_links_targets->name . '">';
+
+		foreach ( $options as $text => $optValue ) {
+
+			$isSelected = selected( $this->fields->override_apply_links_targets->value, $optValue, false );
+
+			echo '<option value="' . esc_attr( $optValue ) . '" ' . $isSelected . '>' . $text . '</option>';
+
+		}
+
+		echo '</select>';
+	}
+
+	public function rentPress_override_single_floorplan_title() {
+
+		$isChecked = checked( $this->fields->override_single_floorplan_template_title->value, 'true', false );
+		echo "
+			<label>
+				<input type='checkbox' name='{$this->fields->override_single_floorplan_template_title->name}' value='true' {$isChecked}>
+				Use Floor Plan's Marketing Name
+			</label>
+		";
+
+	}
+
+	public function rentPress_hide_floorplan_availability_counter() {
+
+		$isChecked = checked( $this->fields->hide_floorplan_availability_counter->value, 'true', false );
+		echo "
+			<label>
+				<input type='checkbox' name='{$this->fields->hide_floorplan_availability_counter->name}' value='true' {$isChecked}>
+				Hide floor plan availability counter
+			</label>
+		";
+
+	}
+
+	public function rentPress_hide_floorplans_without_availability() {
+
+		$isChecked = checked( $this->fields->hide_floorplans_without_availability->value, 'true', false );
+		echo "
+			<label>
+				<input type='checkbox' name='{$this->fields->hide_floorplans_without_availability->name}' value='true' {$isChecked}>
+				Hide floor plans with no availability
+			</label>
+		";
+
+	}
+
+	// public function rentPress_override_unit_visibility() {
+
+	// 	$isChecked = checked( $this->fields->override_unit_visibility->value, 'true', false );
+	// 	echo "
+	// 		<label>
+	// 			<input type='checkbox' name='{$this->fields->override_unit_visibility->name}' value='true' {$isChecked}>
+	// 			Show All Units
+	// 		</label>
+	// 	";
+
+	// 	if ($this->options->getOption('disable_pricing_on_floorplan_with_no_available_units') === 'true') {
+
+	// 		echo '<p><small style="color:red;">Warning: Having This Checked, may conflict with having the disable pricing for floorplans with no available units turned on!</small></p>';
+
+	// 	}
+
+	// }
+
+	public function rentPress_override_unit_visibility() {
+		$options = [
+			"Show units with date and/or availability status" => 'unit_visibility_1',
+			"Show units with availability status"             => 'unit_visibility_2',
+			"Show units only available as of today"           => 'unit_visibility_3',
+			"Show units available as of today plus Lookahead" => 'unit_visibility_4',
+			"Show all units"                                  => 'unit_visibility_5'
+		];
+
+		echo '<select name="' . $this->fields->override_unit_visibility->name . '">';
+
+		foreach ( $options as $text => $optValue ) {
+
+			$isSelected = selected( $this->fields->override_unit_visibility->value, $optValue, false );
+
+			echo '<option value="' . esc_attr( $optValue ) . '" ' . $isSelected . '>' . $text . '</option>';
+
+		}
+
+		echo '</select>';
+	}
+
+	public function rentPress_override_archive_floorplans_file() {
+
+		$isChecked = checked( $this->fields->override_archive_floorplans_template_file->value, SITELEASING_PLUGIN_DIR . 'templates/FloorPlans/archive-floorplans-basic.php', false );
+		echo "<input id='rentPress_archive_floorplan_setting' type='checkbox' name='" . $this->fields->override_archive_floorplans_template_file->name . "' value='" . SITELEASING_PLUGIN_DIR . "templates/FloorPlans/archive-floorplans-basic.php' {$isChecked}>";
+	}
+
+	public function rentPress_floorplans_default_sort() {
+		$options = [
+			"Soonest Available" => 'avail:asc',
+			"Rent: Low to High" => 'rent:asc',
+			"Rent: High to Low" => 'rent:desc',
+			"SQFT: Low To High" => 'sqft:asc',
+			"SQFT: High to Low" => 'sqft:desc',
+			"Bedrooms"          => 'beds:asc'
+		];
+
+		echo '<select name="' . $this->fields->archive_floorplans_default_sort->name . '">';
+
+		foreach ( $options as $text => $optValue ) {
+
+			$isSelected = selected( $this->fields->archive_floorplans_default_sort->value, $optValue, false );
+
+			echo '<option value="' . esc_attr( $optValue ) . '" ' . $isSelected . '>' . $text . '</option>';
+
+		}
+
+		echo '</select>';
+	}
+
+	public function rentPress_single_floorplan_content_position() {
+		$options = [
+			"Top of Page"    => 'single_floorplan_content_top',
+			"Bottom of Page" => 'single_floorplan_content_bottom'
+		];
+
+		echo '<select name="' . $this->fields->single_floorplan_content_position->name . '">';
+
+		foreach ( $options as $text => $optValue ) {
+
+			$isSelected = selected( $this->fields->single_floorplan_content_position->value, $optValue, false );
+
+			echo '<option value="' . esc_attr( $optValue ) . '" ' . $isSelected . '>' . $text . '</option>';
+
+		}
+
+		echo '</select>';
+	}
+
+	public function rentPress_archive_floorplan_content_position() {
+		$options = [
+			"Top of Page"    => 'archive_floorplan_content_top',
+			"Bottom of Page" => 'archive_floorplan_content_bottom'
+		];
+
+		echo '<select name="' . $this->fields->archive_floorplan_content_position->name . '">';
+
+		foreach ( $options as $text => $optValue ) {
+
+			$isSelected = selected( $this->fields->archive_floorplan_content_position->value, $optValue, false );
+
+			echo '<option value="' . esc_attr( $optValue ) . '" ' . $isSelected . '>' . $text . '</option>';
+
+		}
+
+		echo '</select>';
+	}
+
+	public function template_override_section_description() {
+		echo '<p>Toggle on/off the default templates that come with this plugin. Uncheck checkboxes to build custom templates. <a href="https://30lines.com/rentpress/documentation/" target="_blank" rel="noopener" >Click here</a> for documentation.</p>';
+	}
+
+	public function single_floorplan_template_section_description() {
+		echo '<p>Options specific to the Single Floor Plan template.</p>';
+	}
+
+	public function floorplan_grid_section_description() {
+		echo '<p>Options specific to the Floor plans Grid template.</p>';
+	}
+
+	public function override_request_link_field() {
+		$isChecked = checked( $this->fields->override_request_link->value, 'true', false );
+
+		echo '<label for="override_request_link">';
+		echo "<input id='override_request_link' type='checkbox' name='{$this->fields->override_request_link->name}' value='true' {$isChecked}>";
+
+		echo '<i>Override default /contact/ link for "Request More Info" button</i>';
+		echo '</label>';
+	}
+
+	public function request_info_url_field() {
+
+		$default_url = site_url() . '/contact';
+		echo "<input class='field-group-2-input' type='url' name='{$this->fields->single_floorplan_request_more_info_url->name}' value='{$this->fields->single_floorplan_request_more_info_url->value}' placeholder='$default_url'>";
+		echo '<p><small>Enter the entire URL that you would like the "Request More Info" button to link to.</small></p>';
+	}
+
+	public function show_waitlist_ctas_field() {
+		$isChecked = checked( $this->fields->show_waitlist_ctas->value, 'true', false );
+
+		echo '<label for="show_waitlist_ctas">';
+		echo "<input id='show_waitlist_ctas' type='checkbox' name='{$this->fields->show_waitlist_ctas->name}' value='true' {$isChecked}>";
+		echo '</label>';
+	}
+
+	public function show_waitlist_override_url_field() {
+
+		$default_url = site_url() . '/waitlist';
+		echo "<input class='field-group-2-input' type='url' name='{$this->fields->show_waitlist_override_url->name}' value='{$this->fields->show_waitlist_override_url->value}' placeholder='$default_url'>";
+		echo '<p><small>Override default /waitlist/ link for "Join Our Waitlist" button, by entering the entire URL that you would like to link to.</small></p>';
+	}
+
 }
