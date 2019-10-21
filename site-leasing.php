@@ -38,6 +38,11 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
 /**
+ * Plugin Directory
+ */
+define( 'SITELEASING_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
+
+/**
  * Plugin Assets
  */
 define( 'SITELEASING_PLUGIN_ASSETS', plugin_dir_url( __FILE__ ) . '' );

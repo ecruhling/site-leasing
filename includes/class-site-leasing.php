@@ -117,6 +117,26 @@ class Site_Leasing {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-site-leasing-admin.php';
 
 		/**
+		 * The class responsible for admin options.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-site-leasing-admin-options.php';
+
+		/**
+		 * The class responsible for notifications.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-site-leasing-notifications.php';
+
+		/**
+		 * The base class logger.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-site-leasing-logger.php';
+
+		/**
+		 * The class responsible for creating log files (extends logger).
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-site-leasing-logging.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
