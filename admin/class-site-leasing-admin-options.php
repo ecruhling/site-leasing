@@ -56,6 +56,10 @@ if ( ! class_exists( 'Site_Leasing_Options' ) ) :
 			'hide_floorplans_without_availability'      => false,
 			'show_waitlist_override_url'                => '/waitlist',
 		];
+		/**
+		 * @var Site_Leasing_Notifications
+		 */
+		private $notifications;
 
 		public function __construct() {
 			$this->notifications = new Site_Leasing_Notifications();
@@ -251,15 +255,20 @@ if ( ! class_exists( 'Site_Leasing_Options' ) ) :
 				case 'Super Admin': // Will use the same as the Administrator option
 				case 'Administrator':
 					$realRoleName = self::MANAGE_OPTIONS;
+					break;
 				case 'Editor':
 					$realRoleName = 'publish_pages';
+					break;
 				case 'Author':
 					$realRoleName = 'publish_posts';
+					break;
 				case 'Contributor':
 					$realRoleName = 'edit_posts';
+					break;
 				case 'Subscriber': // Will use the same as the Subscriber option
 				case 'Anyone':
 					$realRoleName = 'read';
+					break;
 				default:
 					$realRoleName = '';
 			}
@@ -329,12 +338,14 @@ if ( ! class_exists( 'Site_Leasing_Options' ) ) :
 		 *
 		 * @param  [string] $name [Property key]
 		 *
-		 * @return [mixed]        [Value of desired property]
+		 * @return void [mixed]       [Value of desired property]
 		 */
 		public function __get( $name ) {
 			if ( property_exists( $this, $name ) ) {
 				return $this->$name;
 			}
+
+			return;
 		}
 
 	}

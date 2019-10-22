@@ -30,22 +30,15 @@
    */
 
   $(function () {
-    // console.log('loaded')
 
-		// check if both API Token and Property Code have values, if so show next section
+    // check if both API Token and Property Code have values, if so show next section
+    jQuery.fn.existsWithValue = function () {
+      return this.length && this.val().length
+    }
 
-    // $('#type').change(function () {
-    //   var val = $(this).val()
-    //   if (val == 'item1') {
-    //     $('#size').html('<option value=\'test\'>item1: test 1</option><option value=\'test2\'>item1: test 2</option>')
-    //   } else if (val == 'item2') {
-    //     $('#size').html('<option value=\'test\'>item2: test 1</option><option value=\'test2\'>item2: test 2</option>')
-    //   } else if (val == 'item3') {
-    //     $('#size').html('<option value=\'test\'>item3: test 1</option><option value=\'test2\'>item3: test 2</option>')
-    //   } else if (val == 'item0') {
-    //     $('#size').html('<option value=\'\'>--select one--</option>')
-    //   }
-    // })
+    if ($('#rentcafe-api-token').existsWithValue() && $('#rentcafe-property-code').existsWithValue()) {
+      $('.rentcafe-data-element').removeClass('hide-until-verify')
+    }
 
   })
 

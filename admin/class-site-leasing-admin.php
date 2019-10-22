@@ -33,7 +33,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 *
 		 * @since    1.0.0
 		 * @access   private
-		 * @var      string $site_leasing The ID of this plugin.
+		 * @var      string $site_leasing
 		 */
 		private $site_leasing;
 
@@ -42,7 +42,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 *
 		 * @since    1.0.0
 		 * @access   private
-		 * @var      string $version The current version of this plugin.
+		 * @var      string $version
 		 */
 		private $version;
 
@@ -51,7 +51,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 *
 		 * @since    1.0.0
 		 * @access   public
-		 * @var      string
+		 * @var      string $menu_slug
 		 */
 		public static $menu_slug = 'site-leasing-settings';
 
@@ -60,7 +60,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 *
 		 * @since    1.0.0
 		 * @access   public
-		 * @var      string
+		 * @var      string $optionGroup
 		 */
 		public static $optionGroup = 'site_leasing_wordpress_option_group';
 
@@ -69,7 +69,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 *
 		 * @since    1.0.0
 		 * @access   public
-		 * @var      string
+		 * @var      string $apiCredentialsSettingsSectionID
 		 */
 		public static $apiCredentialsSettingsSectionID = 'site_leasing_api_credentials';
 
@@ -78,27 +78,43 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 *
 		 * @since    1.0.0
 		 * @access   public
-		 * @var      string
+		 * @var      string $rentCafeDataSettingsSectionID
 		 */
 		public static $rentCafeDataSettingsSectionID = 'site_leasing_rentcafe_data';
 
 		/**
-		 * @var object
+		 * Menu arguments for the settings page
+		 *
+		 * @since    1.0.0
+		 * @access   private
+		 * @var object $wp_menu_args
 		 */
 		private $wp_menu_args;
 
 		/**
-		 * @var array
+		 * Keys for the settings fields
+		 *
+		 * @since    1.0.0
+		 * @access   private
+		 * @var array $fields_keys
 		 */
 		private $fields_keys;
 
 		/**
-		 * @var object
+		 * Fields for all the settings
+		 *
+		 * @since    1.0.0
+		 * @access   private
+		 * @var object $fields
 		 */
 		private $fields;
 
 		/**
-		 * @var site_leasing_Options
+		 * All the Site Leasing options
+		 *
+		 * @since    1.0.0
+		 * @access   private
+		 * @var $options
 		 */
 		private $options;
 
@@ -127,24 +143,6 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 			$this->fields_keys = [
 				'rentcafe_api_token',
 				'rentcafe_property_code',
-				'template_override',
-				'templates_accent_color',
-				'override_single_property_template_file',
-				'override_single_floorplan_template_file',
-				'override_unit_visibility',
-				'override_single_floorplan_template_title',
-				'hide_floorplan_availability_counter',
-				'hide_floorplans_without_availability',
-				'override_archive_floorplans_template_file',
-				'archive_floorplans_default_sort',
-				'single_floorplan_content_position',
-				'archive_floorplan_content_position',
-				'override_how_floorplan_pricing_is_display',
-				'override_apply_links_targets',
-				'override_request_link',
-				'single_floorplan_request_more_info_url',
-				'show_waitlist_ctas',
-				'show_waitlist_override_url',
 			];
 
 			$this->fields = [];
@@ -183,7 +181,6 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 			 * between the defined hooks and the functions defined in this
 			 * class.
 			 */
-
 			wp_enqueue_style( $this->site_leasing, plugin_dir_url( __FILE__ ) . 'css/site-leasing-admin.css', array(), $this->version, 'all' );
 
 		}
@@ -206,7 +203,6 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 			 * between the defined hooks and the functions defined in this
 			 * class.
 			 */
-
 			wp_enqueue_script( $this->site_leasing, plugin_dir_url( __FILE__ ) . 'js/site-leasing-admin.js', array( 'jquery' ), $this->version, false );
 
 		}
@@ -303,9 +299,9 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 			 */
 			add_settings_section(
 				self::$rentCafeDataSettingsSectionID,
-				'RENTCafe Data',
+				'<span class="hide-until-verify rentcafe-data-element">RENTCafe Data</span>',
 				function () {
-					echo '<p>Data from RENTCafe below:</p>';
+					echo '<p class="hide-until-verify rentcafe-data-element">Data from RENTCafe below:</p>';
 				},
 				$this->wp_menu_args->menu_slug
 			);
@@ -314,6 +310,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 
 		/**
 		 * Settings Section: API Credentials
+         *
 		 * @return string [HTML of settings input]
 		 */
 		public function rentcafe_api_token() { ?>
