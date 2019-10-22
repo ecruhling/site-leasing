@@ -68,6 +68,15 @@ class Site_Leasing_Admin {
 	public static $apiCredentialsSettingsSectionID = 'site_leasing_api_credentials';
 
 	/**
+	 * Section ID for RENTCafe Data
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @var      string
+	 */
+	public static $rentCafeDataSettingsSectionID = 'site_leasing_rentcafe_data';
+
+	/**
 	 * @var object
 	 */
 	private $wp_menu_args;
@@ -225,41 +234,13 @@ class Site_Leasing_Admin {
             <h1>Resource Site Leasing: General Settings</h1>
 			<?php
 			settings_errors();
-
-			global $submenu;
-
-			if ( isset( $submenu[ Site_Leasing_Admin::$menu_slug ] ) ) {
-				$tabs = array_map(
-					function ( $item ) {
-						return (object) [
-							'slug' => $item[2],
-							'text' => $item[0],
-						];
-					},
-					$submenu[ Site_Leasing_Admin::$menu_slug ]
-				);
-			} else {
-				$tabs = [];
-			}
-
 			?>
-
-            <h2 class="site-leasing-admin-nav">
-				<?php foreach ( $tabs as $tab ) : ?>
-                    <a href="?page=<?php echo $tab->slug; ?>"
-                       class="nav-tab <?php echo $_GET['page'] == $tab->slug ? 'site-leasing-nav-tab-active' : ''; ?>">
-						<?php echo $tab->text; ?>
-                    </a>
-				<?php endforeach; ?>
-            </h2>
-
-            <div style="clear: both;"></div>
 
             <form method="post" action="options.php" enctype="multipart/form-data">
 				<?php
 				settings_fields( self::$optionGroup );
 				do_settings_sections( $this->wp_menu_args->menu_slug );
-				submit_button();
+				submit_button( 'Save API Credentials' );
 				?>
             </form>
         </div>
@@ -273,6 +254,10 @@ class Site_Leasing_Admin {
 	 * @since    1.0.0
 	 */
 	public function wp_setting_sections_and_fields() {
+
+		/**
+		 *  RENTCafe API Credentials Section
+		 */
 		add_settings_section(
 			self::$apiCredentialsSettingsSectionID,
 			'RENTCafe API Credentials',
@@ -296,32 +281,53 @@ class Site_Leasing_Admin {
 			self::$apiCredentialsSettingsSectionID
 		);
 
-		register_setting( self::$optionGroup, $this->fields->rentcafe_api_token->name );
-		register_setting( self::$optionGroup, $this->fields->rentcafe_property_code->name );
+		$args = array(
+			'type'              => 'string',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default'           => null,
+		);
+
+		register_setting( self::$optionGroup, $this->fields->rentcafe_api_token->name, $args );
+		register_setting( self::$optionGroup, $this->fields->rentcafe_property_code->name, $args );
+
+		/**
+		 *  RENTCafe Data Section
+		 */
+		add_settings_section(
+			self::$rentCafeDataSettingsSectionID,
+			'RENTCafe Data',
+			function () {
+				echo '<p>Data from RENTCafe below:</p>';
+			},
+			$this->wp_menu_args->menu_slug
+		);
+
 	}
 
 	/**
 	 * Settings Section: API Credentials
 	 * @return string [HTML of settings input]
 	 */
-	public function rentcafe_api_token() {
-		?>
-        <label for='rentcafe-api-token' style='display:none;'>RENTCafe API Token</label>
-        <input id='rentcafe-api-token' type='text'
-               name='<?php echo $this->fields->rentcafe_api_token->name; ?>'
-               value='<?php echo $this->fields->rentcafe_api_token->value; ?>'
-               placeholder='RENTCafe API Token'>
+	public function rentcafe_api_token() { ?>
+        <label for="rentcafe-api-token" style="display:none;">RENTCafe API Token</label>
+        <input id="rentcafe-api-token" type="text"
+               name="<?php echo $this->fields->rentcafe_api_token->name; ?>"
+               value="<?php echo $this->fields->rentcafe_api_token->value; ?>"
+               placeholder="RENTCafe API Token"
+               class="regular-text">
+        <p class="description" id="tagline-description">Format is: XXXXXXXX-XXXXXXXXXXXXXX</p>
 		<?php
 		return;
 	}
 
-	public function rentcafe_property_code() {
-		?>
-        <label for='rentcafe-property-code' style='display:none;'>RENTCafe Property Code</label>
-        <input id='rentcafe-property-code' type='text'
-               name='<?php echo $this->fields->rentcafe_property_code->name; ?>'
-               value='<?php echo $this->fields->rentcafe_property_code->value; ?>'
-               placeholder='RENTCafe Property Code'>
+	public function rentcafe_property_code() { ?>
+        <label for="rentcafe-property-code" style="display:none;">RENTCafe Property Code</label>
+        <input id="rentcafe-property-code" type="text"
+               name="<?php echo $this->fields->rentcafe_property_code->name; ?>"
+               value="<?php echo $this->fields->rentcafe_property_code->value; ?>"
+               placeholder="RENTCafe Property Code"
+               class="regular-text">
+        <p class="description" id="tagline-description">Format is: pXXXXXXX</p>
 		<?php
 		return;
 	}
