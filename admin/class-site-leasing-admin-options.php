@@ -53,10 +53,6 @@ if ( ! class_exists( 'Site_Leasing_Options' ) ) :
 					continue;
 				}
 
-				if ( in_array( $optionName, [ 'api_username', 'api_token' ] ) ) { // sanitize the text fields
-					$optionValue = sanitize_text_field( $optionValue );
-				}
-
 				$this->updateOption( $optionName, $optionValue );
 			}
 			echo $this->notifications->successResponse( 'Successfully updated Site Leasing settings!' );

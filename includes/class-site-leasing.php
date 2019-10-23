@@ -148,6 +148,17 @@ if ( ! class_exists( 'Site_Leasing' ) ) :
 			 */
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-site-leasing-public.php';
 
+			/**
+			 * Helper functions
+			 */
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/api/api-helpers.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/site-leasing-field-functions.php';
+
+			/**
+			 * WP Pluggable functions (wp_create_nonce)
+			 */
+			require_once( ABSPATH . 'wp-includes/pluggable.php' );
+
 			$this->loader = new Site_Leasing_Loader();
 
 		}

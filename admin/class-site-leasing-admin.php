@@ -231,6 +231,8 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 * @since    1.0.0
 		 */
 		public function render_settings_page() {
+			site_leasing_get_view( dirname( __FILE__ ) . '/views/site-leasing-admin-display.php' );
+
 			?>
             <div id="site-leasing-settings-page-wrapper">
                 <h1>Resource Site Leasing: General Settings</h1>
@@ -310,7 +312,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 
 		/**
 		 * Settings Section: API Credentials
-         *
+		 *
 		 * @return string [HTML of settings input]
 		 */
 		public function rentcafe_api_token() { ?>
