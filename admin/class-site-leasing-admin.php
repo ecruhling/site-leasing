@@ -87,9 +87,9 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 *
 		 * @since    1.0.0
 		 * @access   private
-		 * @var object $wp_menu_args
+		 * @var object $settings_menu_args
 		 */
-		private $wp_menu_args;
+		private $settings_menu_args;
 
 		/**
 		 * Keys for the settings fields
@@ -132,12 +132,11 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 			$this->site_leasing = $site_leasing;
 			$this->version      = $version;
 
-			$this->wp_menu_args = (object) [
-				'parent_slug' => 'options-site-leasing.php',
-				'page_title'  => 'Site Leasing',
-				'menu_title'  => 'Site Leasing',
-				'capability'  => 'manage_options',
-				'menu_slug'   => 'site-leasing-settings',
+			$this->settings_menu_args = (object) [
+				'page_title' => 'Site Leasing',
+				'menu_title' => 'Site Leasing',
+				'capability' => 'manage_options',
+				'menu_slug'  => 'site-leasing-settings',
 			];
 
 			$this->fields_keys = [
@@ -208,17 +207,18 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		}
 
 		/**
-		 * Create plugin options page in the WP admin menu
+		 * Create plugin options menu page in the WP admin menu
 		 * Attached to admin_menu hook
 		 *
 		 * @since    1.0.0
 		 */
 		public function generate_main_options_page() {
+
 			add_menu_page(
-				$this->wp_menu_args->page_title,
-				$this->wp_menu_args->menu_title,
-				$this->wp_menu_args->capability,
-				$this->wp_menu_args->menu_slug,
+				$this->settings_menu_args->page_title,
+				$this->settings_menu_args->menu_title,
+				$this->settings_menu_args->capability,
+				$this->settings_menu_args->menu_slug,
 				[ $this, 'render_settings_page' ],
 				'dashicons-admin-multisite',
 				5
@@ -231,6 +231,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 		 * @since    1.0.0
 		 */
 		public function render_settings_page() {
+
 			site_leasing_get_view( dirname( __FILE__ ) . '/views/site-leasing-admin-display.php' );
 
 			?>
@@ -243,7 +244,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
                 <form method="post" action="options.php" enctype="multipart/form-data">
 					<?php
 					settings_fields( self::$optionGroup );
-					do_settings_sections( $this->wp_menu_args->menu_slug );
+					do_settings_sections( $this->settings_menu_args->menu_slug );
 					submit_button( 'Save API Credentials' );
 					?>
                 </form>
@@ -268,14 +269,14 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 				function () {
 					echo '<p>Your API Credentials from RENTCafe.</p>';
 				},
-				$this->wp_menu_args->menu_slug
+				$this->settings_menu_args->menu_slug
 			);
 
 			add_settings_field(
 				$this->fields->rentcafe_api_token->name,
 				'RENTCafe API Token',
 				[ $this, 'rentcafe_api_token' ],
-				$this->wp_menu_args->menu_slug,
+				$this->settings_menu_args->menu_slug,
 				self::$apiCredentialsSettingsSectionID
 			);
 
@@ -283,7 +284,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 				$this->fields->rentcafe_property_code->name,
 				'RENTCafe Property Code',
 				[ $this, 'rentcafe_property_code' ],
-				$this->wp_menu_args->menu_slug,
+				$this->settings_menu_args->menu_slug,
 				self::$apiCredentialsSettingsSectionID
 			);
 
@@ -305,7 +306,7 @@ if ( ! class_exists( 'Site_Leasing_Admin' ) ) :
 				function () {
 					echo '<p class="hide-until-verify rentcafe-data-element">Data from RENTCafe below:</p>';
 				},
-				$this->wp_menu_args->menu_slug
+				$this->settings_menu_args->menu_slug
 			);
 
 		}

@@ -1,94 +1,39 @@
-<?php
-
-// vars
-
-?>
 <div class="wrap site-leasing-settings-wrap">
-
-    <h1><?php _e( 'Updates', 'site-leasing' ); ?></h1>
-
-    <div class="site-leasing-box" id="site-leasing-license-information">
-        <div class="title">
-            <h3><?php _e( 'License Information', 'site-leasing' ); ?></h3>
-        </div>
-        <div class="inner">
-            <p><?php printf( __( 'To unlock updates, please enter your license key below. If you don\'t have a licence key, please see <a href="%s" target="_blank">details & pricing</a>.', 'site-leasing' ), esc_url( 'https://www.advancedcustomfields.com/pro' ) ); ?></p>
-            <form action="" method="post">
-                <div class="site-leasing-hidden">
-                </div>
-                <table class="form-table">
-                    <tbody>
-                    <tr>
-                        <th>
-                            <label for="site-leasing-field-site_leasing_licence"><?php _e( 'License Key', 'site-leasing' ); ?></label>
-                        </th>
-                        <td>
-							<?php
-
-							// render field
-							site_leasing_render_field( array(
-								'type'     => 'text',
-								'name'     => 'site_leasing_license',
-								'value'    => str_repeat( '*', strlen( 1 ) ),
-								'readonly' => false
-							) );
-
-							?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td>
-                            <input type="submit" value="<?php echo 'button'; ?>" class="button button-primary">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </form>
-
-        </div>
-
-    </div>
-
-    <div class="site-leasing-box" id="site-leasing-update-information">
-        <div class="title">
-            <h3><?php _e( 'Update Information', 'site-leasing' ); ?></h3>
-        </div>
-        <div class="inner">
-            <table class="form-table">
+    <h1>Resource Site Leasing: General Settings</h1>
+    <div class="site-leasing-box" id="site-leasing-rentcafe-credentials">
+        <h2>RENTCafe API Credentials</h2>
+        <p>Your API Credentials from RENTCafe.</p>
+        <form action="" method="post">
+            <table class="form-table" role="presentation">
                 <tbody>
                 <tr>
-                    <th>
-                        <label><?php _e( 'Current Version', 'site-leasing' ); ?></label>
-                    </th>
-                    <td>
+                    <th scope="row">RENTCafe API Token</th>
+                    <td><label for="rentcafe-api-token" style="display:none;">RENTCafe API Token</label>
+                        <input id="rentcafe-api-token" type="text" name="siteLeasing_rentcafe_api_token"
+                               value="MTEwOTM5-zwnJ60QPYFQ" placeholder="RENTCafe API Token" class="regular-text">
+                        <p class="description" id="tagline-description">Format is: XXXXXXXX-XXXXXXXXXXXXXX</p>
                     </td>
                 </tr>
                 <tr>
-                    <th>
-                        <label><?php _e( 'Latest Version', 'site-leasing' ); ?></label>
-                    </th>
-                    <td>
+                    <th scope="row">RENTCafe Property Code</th>
+                    <td><label for="rentcafe-property-code" style="display:none;">RENTCafe Property Code</label>
+                        <input id="rentcafe-property-code" type="text" name="siteLeasing_rentcafe_property_code"
+                               value="p1084216" placeholder="RENTCafe Property Code" class="regular-text">
+                        <p class="description" id="tagline-description">Format is: pXXXXXXX</p>
                     </td>
                 </tr>
                 <tr>
-                    <th>
-                        <label><?php _e( 'Update Available', 'site-leasing' ); ?></label>
-                    </th>
+                    <th scope="row">&nbsp;</th>
                     <td>
+                        <input type="submit" value="Save API Credentials" class="button button-primary">
                     </td>
                 </tr>
                 </tbody>
             </table>
-        </div>
+        </form>
+    </div>
+    <div class="site-leasing-box" id="site-leasing-rentcafe-data">
+        <h2>RENTCafe Data</h2>
+        <p>Data from RENTCafe below:</p>
     </div>
 </div>
-<style type="text/css">
-    #site_leasing_licence {
-        width: 75%;
-    }
-
-    #site-leasing-update-information td h4 {
-        display: none;
-    }
-</style>

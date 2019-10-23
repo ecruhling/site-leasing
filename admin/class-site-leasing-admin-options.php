@@ -37,6 +37,7 @@ if ( ! class_exists( 'Site_Leasing_Options' ) ) :
 			'google_js_default_map_center_latitude'     => 33.748815,
 			'google_js_default_map_center_longitude'    => -84.391097,
 		];
+
 		/**
 		 * @var Site_Leasing_Notifications
 		 */
