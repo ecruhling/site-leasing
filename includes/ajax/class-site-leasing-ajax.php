@@ -20,8 +20,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Sets up the class functionality.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	void
 	 * @return	void
@@ -36,8 +35,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Returns true if the request has data for the given key.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	string $key The data key.
 	 * @return	boolean
@@ -51,8 +49,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Returns request data for the given key.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	string $key The data key.
 	 * @return	mixed
@@ -66,8 +63,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Sets request data for the given key.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	string $key The data key.
 	 * @param	mixed $value The data value.
@@ -83,8 +79,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Allows easy access to modifying properties without changing constructor.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	void
 	 * @return	void
@@ -98,8 +93,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Adds the ajax actions for this response.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	void
 	 * @return	void
@@ -120,8 +114,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Callback for ajax action. Sets up properties and calls the get_response() function.
 	 *
-	 * @date	1/8/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	void
 	 * @return	void
@@ -145,8 +138,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Returns the response data to sent back.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	array $request The request args.
 	 * @return	mixed The response data or WP_Error.
@@ -160,8 +152,7 @@ class Site_Leasing_AJAX {
 	 *
 	 * Sends back JSON based on the $response as either success or failure.
 	 *
-	 * @date	31/7/18
-	 * @since	5.7.2
+	 * @since	1.0
 	 *
 	 * @param	mixed $response The response to send back.
 	 * @return	void

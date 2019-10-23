@@ -13,14 +13,13 @@ if ( ! class_exists( 'Site_Leasing_Options' ) ) :
 	class Site_Leasing_Options {
 		/**
 		 * Site Leasing Options Constants
-		 * These constants are used for Site Leasing core system indicators for checking whether the plugin is installed, what version it is, and some other helpful
+		 * These constants are used for Site Leasing core system indicators for checking whether the plugin is installed, 
+		 * what version it is, and some other helpful things
 		 * string literals
 		 */
 		const OPTION_INSTALLED = '_installed';
 		const OPTION_VERSION = '_version';
 		const MANAGE_OPTIONS = 'manage_options';
-		const RP_FALSE = 'false';
-		const RP_TRUE = 'true';
 
 		/**
 		 * Option keys as string literals
@@ -35,26 +34,8 @@ if ( ! class_exists( 'Site_Leasing_Options' ) ) :
 		 * @var [type]
 		 */
 		public $defaultOptionValues = [
-			'use_avail_units_before_this_date'          => 45,
-			'unit_rent_type'                            => 'effective_rent',
-			'can_refresh'                               => self::RP_FALSE,
-			'disable_pricing_message'                   => 'Call for pricing',
-			'disable_pricing'                           => self::RP_FALSE,
-			'disable_pricing_url'                       => '/contact',
-			'phone_number_format'                       => 'xxx.xxx.xxxx',
-			'templates_accent_color'                    => '#0099CC',
-			'google_js_default_map_center_latitude'     => 39.809734,
-			'google_js_default_map_center_longitude'    => - 98.555620,
-			'override_how_floorplan_pricing_is_display' => 'starting-at',
-			'override_apply_links_targets'              => '_self',
-			'archive_floorplans_default_sort'           => 'avail:asc',
-			'single_floorplan_content_position'         => 'single_floorplan_content_bottom',
-			'archive_floorplan_content_position'        => 'archive_floorplan_content_bottom',
-			'override_unit_visibility'                  => 'unit_visibility_1',
-			'show_waitlist_ctas'                        => 'false',
-			'hide_floorplan_availability_counter'       => false,
-			'hide_floorplans_without_availability'      => false,
-			'show_waitlist_override_url'                => '/waitlist',
+			'google_js_default_map_center_latitude'     => 33.748815,
+			'google_js_default_map_center_longitude'    => -84.391097,
 		];
 		/**
 		 * @var Site_Leasing_Notifications
